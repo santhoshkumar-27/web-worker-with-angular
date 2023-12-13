@@ -15,6 +15,10 @@ export class AppComponent {
   factorialResult!: number;
   factorialInput: number = 1;
   worker!: Worker;
+  isServerRunning = true;
+  role = 1;
+  isloading = false;
+  operatingSystems = [{id: 'win', name: 'Windows'}, {id: 'osx', name: 'MacOS'}, {id: 'linux', name: 'Linux'}];
 
   constructor() {
   }

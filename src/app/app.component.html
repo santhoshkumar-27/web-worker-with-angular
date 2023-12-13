@@ -1,9 +1,88 @@
-
 <div class="form-input">
-  <input
-    type="number"
-    [(ngModel)]="factorialInput"
-    (change)="calculateFactorial()"
-  />
+  <input type="number" [(ngModel)]="factorialInput" (change)="calculateFactorial()" />
 </div>
 <div class="factorial-response">The response is {{ factorialResult }}</div>
+
+<button type="button" (click)="isServerRunning = !isServerRunning">
+  isServerRunning</button>
+
+@if (isServerRunning) {
+
+<p>server is running</p>
+}
+@else {
+
+<p>server is not running</p>
+}
+
+
+
+@if (role == 1) {
+<p>admin</p>
+} @else if (role == 2) {
+<p>provider</p>
+}
+@else {
+<p>patient</p>
+}
+
+
+@for (os of operatingSystems; track os.id) {
+{{ os.name }}
+}
+
+
+
+<!-- @defer {
+
+  <p>defer block</p>
+
+} -->
+
+<!-- https://next.angular.io/guide/defer#triggers -->
+@defer {
+<p>defer block</p>
+} @placeholder (minimum 500ms) {
+<p>Future comments</p>
+}
+
+@defer {
+<p>defer block</p>
+} @placeholder (minimum 500ms) {
+<p>Future comments</p>
+} @loading (minimum 500ms) {
+<p>Loading comments...</p>
+}
+
+
+@defer {
+<p>defer block</p>
+} @placeholder {
+<p>Future comments</p>
+} @loading ( minimum 10s) {
+<p>Loading comments...</p>
+}
+
+
+
+@defer (on viewport; on timer(5s)) {
+<p>defer block</p>
+} @placeholder {
+<p>Future comments</p>
+} @loading ( minimum 10s) {
+<p>Loading comments...</p>
+}
+
+
+<button type="button" (click)="isloading = !isloading">
+  isloading</button>
+
+
+
+
+<!-- only triggers one time and we can't go back -->
+@defer (when isloading) {
+<p>defer block</p>
+} @placeholder {
+<p>Loading comments...</p>
+}
